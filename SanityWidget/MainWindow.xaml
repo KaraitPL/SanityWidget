@@ -8,7 +8,10 @@
         Title="MainWindow" Height="140" Width="140"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Loaded="Window_Loaded"
-        Topmost="True">
+        Topmost="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseMove="Window_MouseMove"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Image Name="background" HorizontalAlignment="Left" VerticalAlignment="Top" Source="pack://application:,,,/Images/Background.png" Panel.ZIndex="0"/>
