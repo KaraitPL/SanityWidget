@@ -27,6 +27,6 @@
         <TextBlock Name="sanityAmount" Text="180" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" Panel.ZIndex="3" Margin="2,100,0,0"
            FontSize="20" FontWeight="DemiBold" />
         <Image Name="border" HorizontalAlignment="Left" VerticalAlignment="Top" Source="pack://application:,,,/Images/Border.png" Panel.ZIndex="2"/>
-        <Image Name="brain" HorizontalAlignment="Left" VerticalAlignment="Top" Source="pack://application:,,,/Images/FullSanity.png" Panel.ZIndex="3"/>
+        <Image Name="brain" HorizontalAlignment="Left" VerticalAlignment="Top" Source="pack://application:,,,/Images/NoSanity.png" Panel.ZIndex="3"/>
     </Grid>
 </Window>

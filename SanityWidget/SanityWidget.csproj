@@ -11,6 +11,9 @@
     <None Remove="Images\Background.png" />
     <None Remove="Images\Border.png" />
     <None Remove="Images\FullSanity.png" />
+    <None Remove="Images\LowSanity.png" />
+    <None Remove="Images\MediumSanity.png" />
+    <None Remove="Images\NoSanity.png" />
     <None Remove="Images\OrangeBackground.png" />
     <None Remove="Images\SanityBackground.png" />
   </ItemGroup>
@@ -19,6 +22,9 @@
     <Resource Include="Images\Background.png" />
     <Resource Include="Images\Border.png" />
     <Resource Include="Images\FullSanity.png" />
+    <Resource Include="Images\LowSanity.png" />
+    <Resource Include="Images\MediumSanity.png" />
+    <Resource Include="Images\NoSanity.png" />
     <Resource Include="Images\OrangeBackground.png" />
     <Resource Include="Images\SanityBackground.png" />
   </ItemGroup>

@@ -34,7 +34,7 @@ namespace SanityWidget
         private bool isDragging = false;
         private Point offset;
         private int maxSanity = 200;
-        private double currentSanity = 20;
+        private double currentSanity = 190;
         private int currentSanityState = 2;
 
         private DispatcherTimer timer;
@@ -62,6 +62,7 @@ namespace SanityWidget
             InitializeComponent();
             progressBar.Value = (currentSanity / maxSanity) * 100;
             sanityAmount.Text = ((int)currentSanity).ToString();
+            setBrainImage();
             _hookCallback = HookCallback;
             SetHook();
 
@@ -75,22 +76,41 @@ namespace SanityWidget
         {
             switch (currentSanityState){
                 case 0:
-                    currentSanity -= 0.2;
+                    if(currentSanity > 0)
+                        currentSanity -= 0.2;
                     break;
                 case 1:
-                    currentSanity -= 0.1;
+                    if (currentSanity > 0)
+                        currentSanity -= 0.1;
                     break;
                 case 2:
                     break;
                 case 3:
-                    currentSanity += 0.1;
+                    if (currentSanity < maxSanity)
+                        currentSanity += 0.1;
                     break;
                 case 4:
-                    currentSanity += 0.2;
+                    if (currentSanity < maxSanity)
+                        currentSanity += 0.2;
                     break;
             }
+            setBrainImage();
+            
             progressBar.Value = (currentSanity / maxSanity) * 100;
             sanityAmount.Text = ((int)currentSanity).ToString();
+        }
+
+        private void setBrainImage()
+        {
+            double sanityState = currentSanity / maxSanity;
+            if (sanityState > 0.8)
+                brain.Source = new BitmapImage(new Uri("pack://application:,,,/Images/FullSanity.png"));
+            else if (sanityState > 0.5)
+                brain.Source = new BitmapImage(new Uri("pack://application:,,,/Images/MediumSanity.png"));
+            else if (sanityState > 0.2)
+                brain.Source = new BitmapImage(new Uri("pack://application:,,,/Images/LowSanity.png"));
+            else
+                brain.Source = new BitmapImage(new Uri("pack://application:,,,/Images/NoSanity.png"));
         }
 
         private void SetHook()
@@ -108,17 +128,41 @@ namespace SanityWidget
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 // Tutaj możesz przetworzyć wcisnięty klawisz
-                if(vkCode == 38)
+                
+                if (vkCode == 105)
                 {
                     currentSanity += 10;
                     progressBar.Value = (currentSanity / maxSanity) * 100;
                     sanityAmount.Text = ((int)currentSanity).ToString();
+                    setBrainImage();
                 }
-                else if(vkCode == 40)
+                else if(vkCode == 99)
                 {
                     currentSanity -= 10;
                     progressBar.Value = (currentSanity/maxSanity) * 100;
                     sanityAmount.Text = ((int)currentSanity).ToString();
+                    setBrainImage();
+                }
+                
+                switch (vkCode)
+                {
+                    case 97:
+                        currentSanityState = 0;
+                        break;
+                    case 98:
+                        currentSanityState = 1;
+                        break;
+                    case 101:
+                        currentSanityState = 2;
+                        break;
+                    case 104:
+                        currentSanityState = 3;
+                        break;
+                    case 103:
+                        currentSanityState = 4;
+                        break;
+                    default:
+                        break;
                 }
             }
 
